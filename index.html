@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sudoku</title>
+        <link rel="stylesheet" href="font-awesome/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1 class="game-name">Sudoku.</h1>
+                <button class="new-game">
+                    New Game
+                    <div class="select-difficulty">
+                        <div class="easy">Easy</div>
+                        <div class="medium">Medium</div>
+                        <div class="hard">Hard</div>
+                    </div>
+                </button>
+            </header>
+            <div class="game-container">
+                <div class="overlay">
+                    <div>
+                        Game Over
+                        <p> Press New Game Button </p>
+                    </div>
+                </div>
+                <div class="game-info-and-board">
+                    <div class="game-info">
+                        <div class="difficulty">
+                            Difficulty:<span>Easy</span>
+                        </div>
+                        <div class="mistakes">
+                            Mistakes:<span>0/3</span>
+                        </div>
+                        <div class="time"> 
+                            <span>00:00</span>
+                            <i class="fa-regular fa-circle-pause"></i>
+                        </div>
+                    </div>
+                    <div class="board"> </div>
+                </div>
+                <div class="game-controls-and-numbers">
+                    <div class="game-controls">
+                        <div title="erase" class="erase">
+                            <i class="fa-solid fa-eraser"></i>
+                        </div>
+                        <div title="Note" class="note">
+                            <i class="fa-solid fa-pen"></i>
+                        </div>
+                        <div title="Hint" class="hint">
+                            <i class="fa-solid fa-lightbulb">
+                                <span class="count">3</span>
+                            </i>
+                        </div>
+                    </div>
+                    <div class="game-numbers">
+                        <span class="1">1</span>
+                        <span class="2">2</span>
+                        <span class="3">3</span>
+                        <span class="4">4</span>
+                        <span class="5">5</span>
+                        <span class="6">6</span>
+                        <span class="7">7</span>
+                        <span class="8">8</span>
+                        <span class="9">9</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="main.js"></script>
+    </body>
+</html>

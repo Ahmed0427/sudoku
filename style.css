@@ -1,0 +1,332 @@
+:root {
+    --background-color: rgba(33, 37, 41, 1);
+    --primary-text-color: rgba(233, 236, 239, 1);
+    --highlight-color: rgba(205, 212, 218, 1);
+    --border-color: rgba(233, 236, 239, 1);
+    --error-color: #e63946;
+    --cell-size: 55px;
+    --font-family: monospace;
+    --font-size-small: 14px;
+    --font-size-medium: 25px;
+    --font-size-large: 30px;
+    --font-weight-bold: bolder;
+    --font-weight-normal: normal;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--primary-text-color);
+    align-items: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -2px;
+    font-size: 32px;
+}
+
+header .new-game {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: var(--font-size-small);
+    border-radius: 5px;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+header .new-game .select-difficulty {
+    border-radius: 5px;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    background-color: var(--primary-text-color);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s ease;
+    transform-origin: top center;
+    transform: scale(0);
+}
+
+header .new-game .select-difficulty.active {
+    transform: scale(1);
+}
+
+header .new-game .select-difficulty::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 40px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent var(--primary-text-color) transparent;
+}
+
+header .new-game .select-difficulty div {
+    padding: 5px 10px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 37, 41, 0.75);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+}
+
+.overlay.active {
+    transform: scale(1);
+}
+
+.overlay div {
+    padding: 25px 50px;
+    background-color: var(--primary-text-color);
+    color: var(--background-color);
+    font-size: var(--font-size-large);
+    font-weight: var(--font-weight-bold);
+    border-radius: 5px;
+    letter-spacing: 2.5px;
+    text-align: center;
+}
+
+.overlay div p {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.game-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.game-container .game-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+
+.game-container .game-info .difficulty,
+.game-container .game-info .mistakes,
+.game-container .game-info .time {
+    display: flex;
+    align-items: center;
+}
+
+.game-container .game-info span {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-small);
+    margin-left: 5px;
+    letter-spacing: 1px;
+}
+
+.game-container .game-info .time i {
+    font-size: 20px;
+    margin-left: 7.5px;
+    cursor: pointer;
+}
+
+.game-container .board {
+    display: grid;
+    grid-template-columns: repeat(9, var(--cell-size));
+    grid-template-rows: repeat(9, var(--cell-size));
+}
+
+.game-container .board .cell {
+    border: 0.5px solid rgba(255, 255, 255, 0.466);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2px;
+    font-size: var(--font-size-medium);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.game-container .board .cell .answer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+}
+
+.game-container .board .cell .answer.wrong {
+    color: var(--error-color);
+}
+
+.game-container .board .cell .answer.pause {
+    background-color: var(--background-color);
+    color: var(--background-color);
+}
+
+.game-container .board .cell.related.active {
+    background-color: rgba(200, 200, 200, 0.3);
+}
+
+.game-container .board .cell.related {
+    background-color: rgba(200, 200, 200, 0.1);
+}
+
+.game-container .board .cell.thicker-right {
+    border-right: 2.5px solid var(--primary-text-color);
+}
+
+.game-container .board .cell.thicker-bottom {
+    border-bottom: 2.5px solid var(--primary-text-color);
+}
+
+.game-container .board .cell span {
+    width: calc(100% / 3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--highlight-color);
+    font-size: 10px;
+}
+
+.game-container .game-controls {
+    margin-bottom: 30px;
+}
+
+.game-container .game-controls div {
+    display: flex;
+    justify-content: center;
+    color: var(--primary-text-color);
+    border: 1px solid var(--primary-text-color);
+    padding: 15px 0;
+    cursor: pointer;
+    font-size: var(--font-size-large);
+    margin: 20px 0;
+}
+
+.game-container .game-controls .note.active {
+    background-color: var(--primary-text-color);
+    color: var(--background-color);
+}
+
+.game-container .game-controls .hint i {
+    position: relative;
+}
+
+.game-container .game-controls .hint .count {
+    position: absolute;
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-text-color);
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -5px;
+    left: 10px;
+}
+
+.game-container .game-numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 90px);
+    gap: 20px;
+}
+
+.game-container .game-numbers span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--primary-text-color);
+    cursor: pointer;
+    font-size: var(--font-size-large);
+}
+
+@media (max-width: 1000px) {
+    .game-container {
+        display: block;
+    }
+
+    .game-container .game-controls {
+        display: flex;
+        margin-bottom: 10px;
+        gap: 10px;
+    }
+
+    .game-container .game-controls div {
+        display: flex;
+        justify-content: center;
+        color: var(--primary-text-color);
+        border: 1px solid var(--primary-text-color);
+        padding: 15px 0;
+        cursor: pointer;
+        font-size: var(--font-size-large);
+        margin: 20px 0;
+        width: calc(100% / 3);
+    }
+
+    .game-container .game-numbers {
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+    }
+
+    .game-container .game-numbers span {
+        font-size: 20px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
+}
+
+@media (max-width: 550px) {
+    .game-container .board {
+        display: grid;
+        grid-template-columns: repeat(9, 37.5px);
+        grid-template-rows: repeat(9, 37.5px);
+    }
+
+    .game-container .board .cell {
+        font-size: 20px;
+    }
+
+    .game-container .game-numbers span {
+        width: 30px;
+        height: 30px;
+    }
+}
