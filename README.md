@@ -17,15 +17,6 @@ This is a fully functional web-based Sudoku game built with HTML, CSS, and JavaS
 
 ---
 
-## Images
-
-<div style="display: flex; gap: 20px;">
-    <img src="images/full-main-screen.png" width="600">
-    <img src="images/small-main-screen.png" width="600">
-</div>
-
----
-
 ## Installation
 
 1. Clone the repository:
