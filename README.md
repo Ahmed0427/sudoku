@@ -19,17 +19,9 @@ This is a fully functional web-based Sudoku game built with HTML, CSS, and JavaS
 
 ## Installation
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/sudoku-game.git
-    ```
-
-2. Navigate to the project directory:
-    ```bash
-    cd sudoku-game
-    ```
-
-3. Open the `index.html` file in your browser to start playing the game.
+Clone the repository
+Navigate to the project directory
+Open the `index.html` file in your browser to start playing the game.
 
 ---
 
@@ -51,5 +43,3 @@ This is a fully functional web-based Sudoku game built with HTML, CSS, and JavaS
 - **JavaScript**: Logic for handling the game mechanics, puzzle generation, and interactions.
 
 ---
-
-**Enjoy playing Sudoku!**
